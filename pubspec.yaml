@@ -19,10 +19,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  scoped_model:
+  flutter_slidable:
   sqflite:
   path:
-
-  flutter_launcher_icons: ^0.7.2+1
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

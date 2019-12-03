@@ -1,26 +1,42 @@
 import 'package:flutter/material.dart';
+import 'dart:io';
+import 'utils.dart' as utils;
 
-void main() => runApp(MyApp());
+void main() {
+  startMeUp() async {
+    Directory docsDir =
+        await getApplicationDocumentsDirectory();
+    utils.docsDir = docsDir;
+    runApp(ReverseMacroCalculator());
+  }
 
-class MyApp extends StatelessWidget {
-  final appTitle = 'Reverse Macro Calculator';
+  startMeUp();
+}
 
-  @override
-  Widget build(BuildContext context) {
+class ReverseMacroCalculator extends StatelessWidget {
+  Widget build(BuildContext inContext) {
     return MaterialApp(
-      title: appTitle,
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text(appTitle),
+      home : DefaultTabController(
+        length: 2,
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text('Reverse Macro Calculator'),
+            bottom: TabBar(
+              tabs: <Widget>[
+                Tab(icon: Icon(Icons.kitchen), text: 'Foods',),
+                Tab(icon: Icon(Icons.computer), text: 'Calculator')
+              ],
+            ),
+          ),
+          body: TabBarView(
+            children: <Widget>[Calculator(), Food()],
+          )
         ),
-        body: MyCustomForm(),
-      ),
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      )
     );
   }
 }
+
 
 class MyCustomForm extends StatefulWidget {
   @override
